@@ -15,8 +15,8 @@ public class MovieManager {
         System.out.println("Movie added successfully!");
     }
     public static void printMovies(){
-        System.out.println("       Movie   "+"          Cost  "+"Ratings");
-        System.out.println("    ---------- "+"          ----  "+"-------");
+        System.out.println("       Movie   "+"          Cost  "+"  Ratings");
+        System.out.println("    ---------- "+"          ----  "+"  -------");
         int index = 1;
         for(Movie movie:MovieManager.movies){
             String movieName=Utils.formatedName(movie.getName());
