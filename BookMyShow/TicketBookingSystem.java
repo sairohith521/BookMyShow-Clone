@@ -1,14 +1,26 @@
 package BookMyShow;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class TicketBookingSystem {
-    public static void main(String[] args){
-       System.out.println("            Cinema Ticket Booking system       ");
+    public static void main(String[] args) throws Exception{
+       System.out.println("                Welcome to ROAM Cinemas          ");
        System.out.println("--------------------------------------------------------      ");
        //Adding Movies to the list 
-        MovieManager.addMovie("Charlie777", 500,9.7);
-        MovieManager.addMovie("KantaraCh2", 550,8.9);
-        MovieManager.addMovie("Dhurandhar", 650,9.2);
-        MovieManager.addMovie("KGF2", 450,8.5);
+        // ArrayList<Movie> list = new ArrayList<>();
+
+        // list.add(new Movie("Avengers", 200, 8.5));
+        // list.add(new Movie("Interstellar", 250, 9.0));
+        // list.add(new Movie("Charlie777", 500,9.7));
+        // list.add(new Movie("KantaraCh2", 550,8.9));
+        // list.add(new Movie("Dhurandhar", 650,9.2));
+        // list.add(new Movie("KGF2", 450,8.5));
+
+        // Write
+        // MovieManager.writeMovies(list);
+
+        // Read
+        MovieManager.movies = MovieManager.readMovies();
+       
 
         //Printing the list of movies.
         MovieManager.printMovies();
