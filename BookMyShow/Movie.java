@@ -1,17 +1,23 @@
 package BookMyShow;
+
+import java.util.ArrayList;
+
 public class Movie {
     private String name;
     private int cost;
     private double ratings;
-    public  Movie(String name,int cost){
+    private boolean[][] seats = new boolean[6][10];
+    public  Movie(String name,int cost) throws Exception{
         this.name=name;
         this.cost=cost;
         this.ratings=0;
+        this.seats = MovieManager.readSeats(name);
     }
     public  Movie(String name,int cost,double ratings)throws Exception{
         this.name=name;
         this.cost=cost;
         this.ratings=ratings;
+        this.seats = MovieManager.readSeats(name);
     }
     public String getName(){
         return this.name;

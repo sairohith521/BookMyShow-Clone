@@ -7,7 +7,6 @@ public class Ticket {
     String movieName;
     int numberOfTickets;
     String date;
-
     int cost;
 
     Ticket(String movieName, int numberOfTickets,int cost) {
@@ -21,7 +20,6 @@ public class Ticket {
     public void saveToFile() {
         try {
             FileWriter fw = new FileWriter("tickets.txt", true);
-
             fw.write("Date: " + date + ", Movie: " + movieName + ", Tickets: " + numberOfTickets+", Total Cost: " + cost*numberOfTickets + "\n");
             fw.close();
             System.out.println();
