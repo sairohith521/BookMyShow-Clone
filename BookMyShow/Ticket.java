@@ -1,18 +1,20 @@
 package BookMyShow;
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Ticket {
     String movieName;
     int numberOfTickets;
     String date;
     int cost;
-
-    Ticket(String movieName, int numberOfTickets,int cost) {
+    ArrayList<Integer>list=new ArrayList<>();
+    Ticket(String movieName, int numberOfTickets,int cost,ArrayList<Integer>list) {
         this.movieName = movieName;
         this.numberOfTickets = numberOfTickets;
         this.date = LocalDate.now().toString();
         this.cost=cost;
+        this.list=list;
     }
 
     public void saveToFile() {
