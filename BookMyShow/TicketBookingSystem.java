@@ -101,6 +101,7 @@ public class TicketBookingSystem {
 
 
             }else if(choice==3){
+              MovieManager.endOfDay();
 
        //priyam code .......
 

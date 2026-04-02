@@ -8,19 +8,20 @@ public class Ticket {
     int numberOfTickets;
     String date;
     int cost;
-    ArrayList<Integer>list=new ArrayList<>();
-    Ticket(String movieName, int numberOfTickets,int cost,ArrayList<Integer>list) {
+    ArrayList<Integer> seatNumbers;
+
+    Ticket(String movieName, int numberOfTickets,int cost, ArrayList<Integer> seatNumbers) {
         this.movieName = movieName;
         this.numberOfTickets = numberOfTickets;
         this.date = LocalDate.now().toString();
         this.cost=cost;
-        this.list=list;
+        this.seatNumbers = seatNumbers;
     }
 
     public void saveToFile() {
         try {
             FileWriter fw = new FileWriter("tickets.txt", true);
-            fw.write("Date: " + date + ", Movie: " + movieName + ", Tickets: " + numberOfTickets+", Total Cost: " + cost*numberOfTickets + "\n");
+            fw.write("Date: " + date + ", Movie: " + movieName + ", Tickets: " + numberOfTickets + ", Seat Numbers: " + seatNumbers + ", Total Cost: " + cost*numberOfTickets + "\n");
             fw.close();
             System.out.println();
             System.out.println(" Ticket saved successfully!");

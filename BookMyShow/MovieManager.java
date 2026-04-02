@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class MovieManager {
 
@@ -176,6 +178,69 @@ public static void updateSeatsInFile(String movieName, boolean[][] seats) throws
     }
 
     bw.close();
+}
+
+public static void endOfDay() throws Exception {
+    Map<String, Integer> movieTicketCount = new LinkedHashMap<>();
+    Map<String, Integer> movieCollection = new LinkedHashMap<>();
+    int grandTotal = 0;
+
+    BufferedReader br = new BufferedReader(new FileReader("tickets.txt"));
+    String line;
+
+    while ((line = br.readLine()) != null) {
+        if (line.trim().isEmpty()) {
+            continue;
+        }
+
+        String[] parts = line.split(", ");
+        String movieName = null;
+        int tickets = 0;
+        int totalCost = 0;
+
+        for (String part : parts) {
+            if (part.startsWith("Movie: ")) {
+                movieName = part.substring("Movie: ".length()).trim();
+            } else if (part.startsWith("Tickets: ")) {
+                tickets = Integer.parseInt(part.substring("Tickets: ".length()).trim());
+            } else if (part.startsWith("Total Cost: ")) {
+                totalCost = Integer.parseInt(part.substring("Total Cost: ".length()).trim());
+            }
+        }
+
+        if (movieName != null) {
+            movieTicketCount.put(movieName, movieTicketCount.getOrDefault(movieName, 0) + tickets);
+            movieCollection.put(movieName, movieCollection.getOrDefault(movieName, 0) + totalCost);
+            grandTotal += totalCost;
+        }
+    }
+    br.close();
+
+    System.out.println();
+    System.out.println("--------------- End Of Day Summary ---------------");
+    int index = 1;
+    for (String movieName : movieCollection.keySet()) {
+        System.out.println(index++ + ". " + movieName + " = " + movieTicketCount.get(movieName)
+                + " Tickets = " + movieCollection.get(movieName));
+    }
+    System.out.println("Grand Total = " + grandTotal);
+    System.out.println("--------------------------------------------------");
+
+    BufferedWriter ticketWriter = new BufferedWriter(new FileWriter("tickets.txt", false));
+    ticketWriter.write("");
+    ticketWriter.close();
+
+    for (Movie movie : movies) {
+        boolean[][] seats = movie.getSeats();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 10; j++) {
+                seats[i][j] = false;
+            }
+        }
+        updateSeatsInFile(movie.getName(), seats);
+    }
+
+    System.out.println("Tickets and seat bookings reset for next day.");
 }
 public static void modifyMovie(int index, Movie newMovie) throws Exception {
 
