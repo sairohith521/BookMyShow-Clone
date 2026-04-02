@@ -25,7 +25,8 @@ public class TicketBookingSystem {
         Scanner sc=new Scanner(System.in);
         while (true) {
             System.out.println("1. Book Ticket");
-            System.out.println("2. Exit");
+            System.out.println("2. End Of Day");
+            System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
@@ -70,11 +71,13 @@ public class TicketBookingSystem {
                 }
                 else{
                 MovieManager.updateSeatsInFile(chosenMovie.getName(), chosenMovie.getSeats());
-                Ticket t = new Ticket(chosenMovie.getName(), noOfTickets,chosenMovie.getCost());
+                Ticket t = new Ticket(chosenMovie.getName(), noOfTickets,chosenMovie.getCost(), list);
                 t.saveToFile();
                 }
 
             }else if (choice == 2) {
+                MovieManager.endOfDay();
+            }else if (choice == 3) {
                 System.out.println("Thank you! Exiting...");
                 break;
             } else {
